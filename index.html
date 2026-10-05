@@ -228,9 +228,44 @@ header.scrolled{box-shadow:0 10px 30px -18px rgba(4,18,46,.5)}
   .hero h1,.hero p,.hero .cta,.hero .eyebrow,.phero h1,.phero p,.phero .cta,.phero .eyebrow,.stats a,.eyebrow::before,.sectors span{animation:none}
   .rv-pre{opacity:1;transform:none}.tilt.on{transform:none}
 }
+
+/* ===== full-site 3D ===== */
+#bg3d{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:none}
+body.gl #bg3d{display:block}
+main,footer{position:relative;z-index:1}
+#prog{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:linear-gradient(90deg,var(--cyan),var(--accent));transform-origin:left;transform:scaleX(0)}
+#glow{position:fixed;left:0;top:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;pointer-events:none;z-index:2;opacity:0;background:radial-gradient(circle,rgba(44,208,230,.16),transparent 62%);transition:opacity .4s;mix-blend-mode:screen}
+body.gl.mv #glow{opacity:1}
+body.gl section{background:color-mix(in srgb,var(--bg) 30%,transparent)}
+body.gl .alt{background:color-mix(in srgb,var(--bg2) 42%,transparent)}
+body.gl .hero{background:linear-gradient(100deg,rgba(4,18,46,.92),rgba(6,33,79,.62) 55%,rgba(10,42,100,.28))}
+body.gl .phero{background:linear-gradient(100deg,rgba(4,18,46,.92),rgba(6,33,79,.62) 55%,rgba(10,42,100,.28))}
+body.gl .dark{background:linear-gradient(160deg,rgba(4,18,46,.74),rgba(6,33,79,.5))}
+body.gl .card,body.gl .course,body.gl .step,body.gl .format,body.gl form,body.gl .pillar{background:color-mix(in srgb,var(--card) 70%,transparent);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+body.gl .model{background:rgba(255,255,255,.88)}
+body.gl .stage .globe{display:none}
+@media(max-width:960px){body.gl #bg3d{opacity:.4}}
+.view-in{animation:viewIn .9s cubic-bezier(.2,.7,.2,1) both;transform-origin:50% 0}
+@keyframes viewIn{from{opacity:0;transform:perspective(1200px) rotateX(-7deg) translateY(40px)}to{opacity:1;transform:none}}
+/* css 3d cube */
+.cube-wrap{width:120px;height:120px;perspective:700px;flex:none}
+.cube{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:cube 16s linear infinite}
+.cube span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:.95rem;color:#fff;border:1px solid rgba(126,230,242,.6);background:rgba(10,79,196,.45);backdrop-filter:blur(2px)}
+.cube span:nth-child(1){transform:translateZ(60px)}.cube span:nth-child(2){transform:rotateY(90deg) translateZ(60px)}
+.cube span:nth-child(3){transform:rotateY(180deg) translateZ(60px)}.cube span:nth-child(4){transform:rotateY(-90deg) translateZ(60px)}
+.cube span:nth-child(5){transform:rotateX(90deg) translateZ(60px)}.cube span:nth-child(6){transform:rotateX(-90deg) translateZ(60px)}
+@keyframes cube{from{transform:rotateX(-22deg) rotateY(0)}to{transform:rotateX(-22deg) rotateY(360deg)}}
+.band{gap:30px}
+h2.rv-pre{filter:blur(6px)}
+h2.rv{transition-property:opacity,transform,filter}
+.btn.mag{transition:transform .2s ease-out,background .2s}
+@media(prefers-reduced-motion:reduce){.cube{animation:none;transform:rotateX(-22deg) rotateY(-30deg)}.view-in{animation:none}#glow{display:none}}
 </style>
 </head>
 <body>
+<canvas id="bg3d" aria-hidden="true"></canvas>
+<div id="prog" aria-hidden="true"></div>
+<div id="glow" aria-hidden="true"></div>
 
 <header>
   <div class="wrap nav">
@@ -269,7 +304,7 @@ header.scrolled{box-shadow:0 10px 30px -18px rgba(4,18,46,.5)}
             <a class="btn ghost" href="#services" data-i18n="h_cta2">Nos services</a>
           </div>
         </div>
-        <div class="stage" id="stage-home"><canvas id="gl-home" aria-hidden="true"></canvas>
+        <div class="stage" id="stage-home">
         <svg class="globe" id="fb-home" viewBox="0 0 400 400" role="img" aria-label="Globe">
           <g class="gear">
             <circle cx="200" cy="200" r="150" fill="#0a4fc4"/>
@@ -365,10 +400,11 @@ header.scrolled{box-shadow:0 10px 30px -18px rgba(4,18,46,.5)}
     </div>
   </section>
 
-  <section class="alt">
+  <section class="alt" id="teaser">
     <div class="wrap">
       <div class="band">
         <div><h3 data-i18n="ba_t">Equator Academy</h3><p data-i18n="ba_d">Des formations techniques en télécoms, BTP et management de projet, sur site, en centre ou à distance.</p></div>
+        <div class="cube-wrap" aria-hidden="true"><div class="cube"><span data-i18n="cu1">Télécom</span><span data-i18n="cu2">Chantier</span><span data-i18n="cu3">Routes</span><span data-i18n="cu4">HSE</span><span data-i18n="cu5">Projet</span><span data-i18n="cu6">Contrats</span></div></div>
         <a class="btn" href="#academy" data-i18n="ba_cta">Voir les formations</a>
       </div>
     </div>
@@ -377,7 +413,7 @@ header.scrolled{box-shadow:0 10px 30px -18px rgba(4,18,46,.5)}
 
 <!-- ================= ACADEMY ================= -->
 <div id="view-academy" hidden>
-  <section class="phero">
+  <section class="phero" id="a-hero">
     <div class="wrap grid">
       <div>
       <span class="eyebrow">Equator Academy</span>
@@ -385,10 +421,10 @@ header.scrolled{box-shadow:0 10px 30px -18px rgba(4,18,46,.5)}
       <p data-i18n="a_sub">Des programmes pratiques, animés par des praticiens, en français ou en anglais.</p>
       <div class="cta"><a class="btn" href="#contact" data-course="" data-i18n="a_cta">Demander le catalogue</a></div>
       </div>
-      <div class="stage" id="stage-acad"><canvas id="gl-acad" aria-hidden="true"></canvas></div>
+      <div class="stage" id="stage-acad"></div>
     </div>
   </section>
-  <section>
+  <section id="a-cat">
     <div class="wrap">
       <span class="eyebrow" data-i18n="a_eyebrow">Catalogue</span>
       <h2 data-i18n="a_h2">Trois filières</h2>
@@ -396,7 +432,7 @@ header.scrolled{box-shadow:0 10px 30px -18px rgba(4,18,46,.5)}
       <div class="tracks" id="tracks" style="margin-top:40px"></div>
     </div>
   </section>
-  <section class="alt">
+  <section class="alt" id="a-fmt">
     <div class="wrap">
       <span class="eyebrow" data-i18n="f_eyebrow">Formats</span>
       <h2 data-i18n="f_title">Où et comment se former</h2>
@@ -504,7 +540,7 @@ m3_t:"Partenaire clé en main",m3_d:"Étude, réalisation, mise en service et fo
 pr_eyebrow:"Méthode",pr_title:"Du premier échange à la livraison",
 s1_t:"Comprendre",s1_d:"Vos objectifs, périmètre, budget et calendrier.",s2_t:"Évaluer",s2_d:"Visites de site, autorisations, approvisionnement et analyse des risques.",
 s3_t:"Réaliser",s3_d:"Ingénierie, achats et construction, avec un contrôle qualité strict.",s4_t:"Accompagner",s4_d:"Mise en service, remise d'ouvrage, maintenance et formation.",
-ba_t:"Equator Academy",ba_d:"Des formations techniques en télécoms, BTP et management de projet, sur site, en centre ou à distance.",ba_cta:"Voir les formations",
+ba_t:"Equator Academy",ba_d:"Des formations techniques en télécoms, BTP et management de projet, sur site, en centre ou à distance.",ba_cta:"Voir les formations",cu1:"Télécom",cu2:"Chantier",cu3:"Routes",cu4:"HSE",cu5:"Projet",cu6:"Contrats",
 a_title:"Formez les équipes qui construisent et exploitent vos infrastructures",a_sub:"Des programmes pratiques, animés par des praticiens, en français ou en anglais.",a_cta:"Demander le catalogue",
 a_eyebrow:"Catalogue",a_h2:"Trois filières",a_lead:"Le catalogue ci-dessous présente les thèmes proposés. Durées, dates et tarifs sont communiqués sur demande, selon votre besoin.",
 t1_t:"Télécommunications",t1_d:"Pour techniciens et chefs d'équipe réseaux.",t2_t:"Construction et travaux publics",t2_d:"Pour conducteurs de travaux, chefs de chantier et techniciens.",t3_t:"Management et projets internationaux",t3_d:"Pour responsables de projet, acheteurs et cadres.",
@@ -556,7 +592,7 @@ m3_t:"Turnkey partner",m3_d:"Study, delivery, commissioning and training of your
 pr_eyebrow:"Method",pr_title:"From first conversation to delivery",
 s1_t:"Understand",s1_d:"Your objectives, scope, budget and timeline.",s2_t:"Assess",s2_d:"Site visits, permits, supply chain and risk review.",
 s3_t:"Deliver",s3_d:"Engineering, procurement and construction with strict quality control.",s4_t:"Support",s4_d:"Commissioning, handover, maintenance and training.",
-ba_t:"Equator Academy",ba_d:"Technical training in telecom, construction and project management: on site, in a training centre or remote.",ba_cta:"See the courses",
+ba_t:"Equator Academy",ba_d:"Technical training in telecom, construction and project management: on site, in a training centre or remote.",ba_cta:"See the courses",cu1:"Telecom",cu2:"Site",cu3:"Roads",cu4:"HSE",cu5:"Project",cu6:"Contracts",
 a_title:"Train the teams that build and operate your infrastructure",a_sub:"Hands-on programmes taught by practitioners, in French or English.",a_cta:"Request the catalogue",
 a_eyebrow:"Catalogue",a_h2:"Three tracks",a_lead:"The catalogue below lists the topics we offer. Duration, dates and fees are provided on request, based on your need.",
 t1_t:"Telecommunications",t1_d:"For network technicians and team leaders.",t2_t:"Construction and public works",t2_d:"For site managers, foremen and technicians.",t3_t:"Management and international projects",t3_d:"For project managers, buyers and executives.",
@@ -659,9 +695,26 @@ $1('#copyMsg').onclick=async()=>{
 /* ===================== motion + 3D ===================== */
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE=matchMedia('(pointer: fine)').matches;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 
-/* header shadow */
-addEventListener('scroll',()=>$1('header').classList.toggle('scrolled',scrollY>8),{passive:true});
+/* scroll progress, header shadow, hero parallax */
+function onScroll(){
+  $1('header').classList.toggle('scrolled',scrollY>8);
+  const max=document.documentElement.scrollHeight-innerHeight;
+  $1('#prog').style.transform=`scaleX(${max>0?scrollY/max:0})`;
+  if(!RM){const t=$1('.hero .grid>div:first-child'),p=$1('.phero .grid>div:first-child');
+    [t,p].forEach(e=>{if(e){e.style.transform=`translateY(${Math.min(scrollY,600)*.12}px)`;e.style.opacity=clamp(1-scrollY/900,.25,1)}})}
+}
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+/* cursor glow + magnetic buttons */
+if(FINE&&!RM){
+  addEventListener('pointermove',e=>{const g=$1('#glow');g.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;document.body.classList.add('mv')},{passive:true});
+  document.addEventListener('pointerleave',()=>document.body.classList.remove('mv'));
+  $$('.btn').forEach(b=>{b.classList.add('mag');
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.28}px)`});
+    b.addEventListener('pointerleave',()=>b.style.transform='')});
+}
 
 /* scroll reveal (below-the-fold elements only) */
 const rvSel='.pillar,.card,.model,.step,.course,.format,.track>h3,.track>p,.band,section h2,.lead,.sectors span,.info,form,.stats a';
@@ -670,11 +723,11 @@ function setupReveal(root){
   const io=new IntersectionObserver(es=>es.forEach(e=>{
     if(e.isIntersecting){const t=e.target;t.classList.remove('rv-pre');io.unobserve(t);setTimeout(()=>{t.classList.remove('rv');t.style.removeProperty('--d')},1300)}
   }),{threshold:.05});
-  root.querySelectorAll(rvSel).forEach((el,i)=>{
+  root.querySelectorAll(rvSel).forEach(el=>{
     if(el.dataset.rv) return; el.dataset.rv=1;
     if(el.closest('.hero,.phero')) return;
     const r=el.getBoundingClientRect();
-    if(r.width===0||(r.top<innerHeight&&r.bottom>0)) return;  // visible now: leave as is
+    if(r.width===0||(r.top<innerHeight&&r.bottom>0)) return;
     const sib=[...el.parentElement.children].indexOf(el);
     el.style.setProperty('--d',Math.min(sib,6)*0.08+'s');
     el.classList.add('rv','rv-pre'); io.observe(el);
@@ -688,7 +741,7 @@ function setupTilt(root){
     if(el.dataset.tilt) return; el.dataset.tilt=1; el.classList.add('tilt');
     el.addEventListener('pointermove',e=>{
       const r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
-      el.style.setProperty('--ry',((x-.5)*10)+'deg'); el.style.setProperty('--rx',((.5-y)*8)+'deg');
+      el.style.setProperty('--ry',((x-.5)*12)+'deg'); el.style.setProperty('--rx',((.5-y)*9)+'deg');
       el.style.setProperty('--mx',x*100+'%'); el.style.setProperty('--my',y*100+'%');
       el.classList.add('on'); el.classList.remove('off');
     });
@@ -696,113 +749,196 @@ function setupTilt(root){
   });
 }
 
-/* drifting network of points (telecom feel) behind dark sections */
-function netCanvas(host){
-  const c=document.createElement('canvas'); c.className='net'; host.prepend(c);
-  const g=c.getContext('2d'); let w,h,pts=[],vis=true,raf;
-  const size=()=>{w=c.width=host.clientWidth;h=c.height=host.clientHeight;
-    const n=Math.round(Math.min(70,w*h/16000)); pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))};
-  size(); new ResizeObserver(size).observe(host);
-  const draw=()=>{
-    g.clearRect(0,0,w,h);
-    for(const p of pts){ if(!RM){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}
-      g.fillStyle='rgba(126,230,242,.7)';g.beginPath();g.arc(p.x,p.y,1.8,0,6.3);g.fill()}
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=dx*dx+dy*dy;
-      if(d<130*130){g.strokeStyle=`rgba(126,230,242,${.28*(1-Math.sqrt(d)/130)})`;g.beginPath();g.moveTo(pts[i].x,pts[i].y);g.lineTo(pts[j].x,pts[j].y);g.stroke()}}
-    if(!RM&&vis) raf=requestAnimationFrame(draw);
-  };
-  new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis){cancelAnimationFrame(raf);draw()}}).observe(host);
-  draw();
-}
-
-/* Three.js scenes */
-const scenes={};
+/* ---------- one fixed WebGL scene behind the whole site ---------- */
+let G=null;   // engine
 function gearShape(teeth,ro,ri,hole){
   const sh=new THREE.Shape(), n=teeth*4;
-  for(let i=0;i<n;i++){
-    const a=i/n*Math.PI*2, r=(i%4===1||i%4===2)?ro:ri;
-    const x=Math.cos(a)*r,y=Math.sin(a)*r; i?sh.lineTo(x,y):sh.moveTo(x,y);
-  }
-  sh.closePath();
-  const hp=new THREE.Path(); hp.absarc(0,0,hole,0,Math.PI*2,true); sh.holes.push(hp);
-  return sh;
+  for(let i=0;i<n;i++){const a=i/n*Math.PI*2, r=(i%4===1||i%4===2)?ro:ri;const x=Math.cos(a)*r,y=Math.sin(a)*r;i?sh.lineTo(x,y):sh.moveTo(x,y)}
+  sh.closePath(); const hp=new THREE.Path(); hp.absarc(0,0,hole,0,Math.PI*2,true); sh.holes.push(hp); return sh;
 }
-function buildScene(kind,canvas,stage){
-  let renderer;
-  try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); }catch(e){ return null }
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  const scene=new THREE.Scene(), cam=new THREE.PerspectiveCamera(38,1,.1,50); cam.position.set(0,0,6.2);
-  scene.add(new THREE.AmbientLight(0xffffff,.55));
-  const key=new THREE.DirectionalLight(0xffffff,.8); key.position.set(3,4,5); scene.add(key);
-  const rim=new THREE.PointLight(0x00e5ff,2.2,20); rim.position.set(-4,-2,3); scene.add(rim);
-  const root=new THREE.Group(); scene.add(root); if(kind!=='home') root.scale.setScalar(.68);
-  const spin=[];  // [object, axis, speed]
+function init3D(){
+  if(typeof THREE==='undefined') return;
+  const canvas=$1('#bg3d'); let renderer;
+  try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'low-power'})}catch(e){return}
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.75)); renderer.setClearColor(0x000000,0);
+  const scene=new THREE.Scene(), cam=new THREE.PerspectiveCamera(40,1,.1,100); cam.position.z=9;
+  scene.add(new THREE.AmbientLight(0xffffff,.6));
+  const key=new THREE.DirectionalLight(0xffffff,.85); key.position.set(3,4,6); scene.add(key);
+  const rim=new THREE.PointLight(0x00e5ff,2,25); rim.position.set(-5,-2,4); scene.add(rim);
 
-  const metal=new THREE.MeshStandardMaterial({color:0x0a4fc4,metalness:.55,roughness:.32});
-  if(kind==='home'){
-    const gear=new THREE.Mesh(new THREE.ExtrudeGeometry(gearShape(12,1.75,1.5,1.22),{depth:.32,bevelEnabled:true,bevelThickness:.05,bevelSize:.05,bevelSegments:2,curveSegments:12}),metal);
-    gear.position.z=-.16; root.add(gear); spin.push([gear,'z',.18]);
+  const C={gear:0x0a4fc4,main:0x2f6fe0,line:0x1590d0,acc:0x00bcd4,glass:0x0aa5bd};
+  let cur=null;
+  const mk=(m,o=1)=>{m.transparent=true;m.userData.base=o;m.opacity=o;cur.mats.push(m);return m};
+  const line=o=>mk(new THREE.LineBasicMaterial({color:C.line}),o??.9);
+  const glass=o=>mk(new THREE.MeshBasicMaterial({color:C.glass,side:THREE.DoubleSide,depthWrite:false}),o??.14);
+  const solid=(c,o)=>mk(new THREE.MeshBasicMaterial({color:c}),o??1);
+  const lines=(pts,m)=>{const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));return new THREE.LineSegments(g,m)};
+
+  const B={};
+  B.gearGlobe=(g,u)=>{
+    const std=mk(new THREE.MeshStandardMaterial({color:C.gear,metalness:.5,roughness:.35}));
+    const gear=new THREE.Mesh(new THREE.ExtrudeGeometry(gearShape(12,1.75,1.5,1.22),{depth:.32,bevelEnabled:true,bevelThickness:.05,bevelSize:.05,bevelSegments:2,curveSegments:12}),std);
+    gear.position.z=-.16; g.add(gear);
     const globe=new THREE.Group();
-    globe.add(new THREE.Mesh(new THREE.SphereGeometry(1.14,40,28),new THREE.MeshStandardMaterial({color:0x0aa5bd,metalness:.1,roughness:.5,emissive:0x002a35})));
-    globe.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(1.16,16,12)),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.75})));
-    root.add(globe); spin.push([globe,'y',.45]);
-    const eq=new THREE.Mesh(new THREE.TorusGeometry(1.62,.014,8,160),new THREE.MeshBasicMaterial({color:0x7ee6f2}));
-    eq.rotation.x=Math.PI/2; root.add(eq);   // the equator line
+    globe.add(new THREE.Mesh(new THREE.SphereGeometry(1.14,36,26),mk(new THREE.MeshStandardMaterial({color:0x0aa5bd,metalness:.1,roughness:.5,emissive:0x002a35}))));
+    globe.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(1.16,16,12)),mk(new THREE.LineBasicMaterial({color:0xffffff}),.7)));
+    g.add(globe);
+    const eq=new THREE.Mesh(new THREE.TorusGeometry(1.62,.014,8,160),solid(0x7ee6f2)); eq.rotation.x=Math.PI/2; g.add(eq);
     const orbit=new THREE.Group(); orbit.rotation.set(1.1,0,.5);
-    orbit.add(new THREE.Mesh(new THREE.TorusGeometry(2.25,.008,6,140),new THREE.MeshBasicMaterial({color:0x7ee6f2,transparent:true,opacity:.35})));
-    const sat=new THREE.Mesh(new THREE.SphereGeometry(.1,16,12),new THREE.MeshBasicMaterial({color:0xffffff})); sat.position.set(2.25,0,0);
-    const holder=new THREE.Group(); holder.add(sat); orbit.add(holder); root.add(orbit); spin.push([holder,'z',.9]);
-  }else{
-    // academy: stacked "layers" (training levels) around a rotating core
-    const core=new THREE.Mesh(new THREE.IcosahedronGeometry(.95,1),new THREE.MeshStandardMaterial({color:0x0aa5bd,flatShading:true,metalness:.2,roughness:.5,emissive:0x002a35}));
-    root.add(core); spin.push([core,'y',.5],[core,'x',.25]);
-    const wire=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.25,1)),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.5}));
-    root.add(wire); spin.push([wire,'y',-.3]);
-    [1.6,2.05,2.5].forEach((r,i)=>{
-      const g=new THREE.Mesh(new THREE.ExtrudeGeometry(gearShape(8+i*2,r+.22,r,r-.2),{depth:.12,bevelEnabled:false}),i%2?new THREE.MeshStandardMaterial({color:0x2b7bff,metalness:.5,roughness:.35}):metal);
-      g.position.z=-.06; const h=new THREE.Group(); h.add(g); h.rotation.set(1.15-i*.25,i*.5,0); root.add(h); spin.push([g,'z',(i%2?-1:1)*(.35-i*.07)]);
-    });
-  }
-  // dust
-  const N=160, pos=new Float32Array(N*3);
-  for(let i=0;i<N;i++){const r=3+Math.random()*2.2,t=Math.random()*6.283,p=Math.acos(2*Math.random()-1);pos[i*3]=r*Math.sin(p)*Math.cos(t);pos[i*3+1]=r*Math.sin(p)*Math.sin(t)*.7;pos[i*3+2]=r*Math.cos(p)-1}
-  const pg=new THREE.BufferGeometry(); pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  const dust=new THREE.Points(pg,new THREE.PointsMaterial({color:0x7ee6f2,size:.03,transparent:true,opacity:.7})); scene.add(dust);
+    orbit.add(new THREE.Mesh(new THREE.TorusGeometry(2.25,.008,6,140),solid(0x7ee6f2,.35)));
+    const holder=new THREE.Group(); const sat=new THREE.Mesh(new THREE.SphereGeometry(.1,16,12),solid(0xffffff)); sat.position.x=2.25; holder.add(sat); orbit.add(holder); g.add(orbit);
+    u.push((dt)=>{gear.rotation.z+=dt*.18;globe.rotation.y+=dt*.45;holder.rotation.z+=dt*.9});
+  };
+  B.tower=(g,u)=>{
+    const H=3.4,b=.55,t=.14,n=7,P=[];
+    const ring=h=>{const r=b+(t-b)*(h/H);return [[-r,h,-r],[r,h,-r],[r,h,r],[-r,h,r]]};
+    for(let i=0;i<4;i++){P.push(...ring(0)[i],...ring(H)[i])}
+    for(let k=0;k<=n;k++){const c=ring(H*k/n);for(let i=0;i<4;i++)P.push(...c[i],...c[(i+1)%4]);
+      if(k<n){const d=ring(H*(k+1)/n);for(let i=0;i<4;i++)P.push(...c[i],...d[(i+1)%4])}}
+    const L=lines(P,line(.95)); L.position.y=-H/2; g.add(L);
+    for(let i=0;i<3;i++){const dish=new THREE.Mesh(new THREE.CylinderGeometry(.2,.2,.04,24),solid(C.acc,.9));
+      const a=i*2.094; dish.position.set(Math.cos(a)*.22,H/2-.35-i*.28,Math.sin(a)*.22); dish.rotation.z=Math.PI/2; dish.rotation.y=-a; g.add(dish)}
+    const rings=[0,1,2].map(i=>{const r=new THREE.Mesh(new THREE.TorusGeometry(1,.012,6,72),solid(C.acc,.8));r.position.y=H/2;g.add(r);return r});
+    u.push((dt,t)=>{rings.forEach((r,i)=>{const p=((t*.45+i/3)%1);r.scale.setScalar(.25+p*2.2);r.material.opacity=r.material.userData.base*(1-p)*(1-p)});g.rotation.y+=dt*.25});
+  };
+  B.building=(g,u)=>{
+    const defs=[[1.1,2.8,1.1,-.8,0],[.9,2.0,.9,.55,0],[.7,1.4,.7,1.3,.3]];
+    defs.forEach(([w,h,d,x,z],i)=>{
+      const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),glass(.16)); m.position.set(x,h/2-1.5,z); g.add(m);
+      const wf=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.BoxGeometry(w,h,d,1,Math.round(h*2.2),1)),line(.6)); wf.position.copy(m.position); g.add(wf);
+      const e=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(w,h,d)),line(1)); e.position.copy(m.position); g.add(e)});
+    const crane=new THREE.Group(); crane.position.set(-.8,1.3,0);
+    crane.add(lines([0,0,0,0,1.5,0],line(1)));
+    const jib=new THREE.Group(); jib.position.y=1.5;
+    jib.add(lines([-.5,0,0,1.7,0,0,-.5,0,0,0,.35,0,1.7,0,0,0,.35,0],line(1)));
+    jib.add(lines([1.4,0,0,1.4,-.9,0],line(.9)));
+    const hook=new THREE.Mesh(new THREE.BoxGeometry(.12,.12,.12),solid(C.acc)); hook.position.set(1.4,-.95,0); jib.add(hook);
+    const cw=new THREE.Mesh(new THREE.BoxGeometry(.25,.2,.2),solid(C.main)); cw.position.set(-.45,-.1,0); jib.add(cw);
+    crane.add(jib); g.add(crane);
+    u.push((dt,t)=>{jib.rotation.y=Math.sin(t*.45)*.9;hook.position.y=-.95+Math.sin(t*1.3)*.12});
+  };
+  B.bridge=(g,u)=>{
+    const deck=new THREE.Mesh(new THREE.BoxGeometry(5,.09,.8),glass(.35)); deck.position.y=-.6; g.add(deck);
+    const deckE=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(5,.09,.8)),line(1)); deckE.position.y=-.6; g.add(deckE);
+    const pts=[];for(let i=0;i<=24;i++){const x=-2.4+4.8*i/24;pts.push(new THREE.Vector3(x,-.6+1.8*(1-Math.pow(x/2.4,2)),0))}
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),48,.035,6),solid(C.acc,.95)));
+    const H=[];for(let i=1;i<24;i+=2){H.push(pts[i].x,pts[i].y,0,pts[i].x,-.6,0)} g.add(lines(H,line(.7)));
+    [-2.5,2.5].forEach(x=>{const p=new THREE.Mesh(new THREE.BoxGeometry(.25,1.2,.9),glass(.3));p.position.set(x,-1.2,0);g.add(p)});
+    const cars=[0,1,2].map(i=>{const c=new THREE.Mesh(new THREE.BoxGeometry(.28,.12,.18),solid(i==1?0xffffff:C.main));c.position.set(0,-.5,i%2?.15:-.15);g.add(c);return c});
+    u.push((dt,t)=>{g.rotation.y=Math.sin(t*.2)*.35;cars.forEach((c,i)=>{const s=(i%2?-1:1);c.position.x=((t*.6*s+i*1.7)%5+5)%5-2.5})});
+  };
+  B.network=(g,u)=>{
+    const N=30,P=[];for(let i=0;i<N;i++){const y=1-2*(i+.5)/N,r=Math.sqrt(1-y*y),a=i*2.39996;P.push(new THREE.Vector3(Math.cos(a)*r,y,Math.sin(a)*r).multiplyScalar(2.05))}
+    const pg=new THREE.BufferGeometry().setFromPoints(P); g.add(new THREE.Points(pg,mk(new THREE.PointsMaterial({color:C.acc,size:.11}),1)));
+    const E=[],edges=[];for(let i=0;i<N;i++)for(let j=i+1;j<N;j++)if(P[i].distanceTo(P[j])<1.45){E.push(P[i].x,P[i].y,P[i].z,P[j].x,P[j].y,P[j].z);edges.push([i,j])}
+    g.add(lines(E,line(.4)));
+    const pulses=Array.from({length:7},()=>{const m=new THREE.Mesh(new THREE.SphereGeometry(.06,10,8),solid(0xffffff));g.add(m);return {m,e:edges[(Math.random()*edges.length)|0],t:Math.random(),s:.4+Math.random()*.5}});
+    u.push((dt)=>{g.rotation.y+=dt*.14;g.rotation.x=.25;pulses.forEach(p=>{p.t+=dt*p.s;if(p.t>1){p.t=0;p.e=edges[(Math.random()*edges.length)|0]}const a=P[p.e[0]],b=P[p.e[1]];p.m.position.lerpVectors(a,b,p.t)})});
+  };
+  B.helix=(g,u)=>{
+    const pts=[];for(let i=0;i<=80;i++){const a=i/80*Math.PI*3.2;pts.push(new THREE.Vector3(Math.cos(a)*1.1,-2.3+4.6*i/80,Math.sin(a)*1.1))}
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),120,.025,6),solid(C.line,.8)));
+    [.04,.35,.65,.96].forEach((f,i)=>{const p=pts[Math.round(f*80)];const m=new THREE.Mesh(new THREE.SphereGeometry(.2+i*.03,18,14),solid(i==3?0xffffff:C.acc));m.position.copy(p);g.add(m);
+      const halo=new THREE.Mesh(new THREE.SphereGeometry(.34+i*.03,18,14),glass(.2));halo.position.copy(p);g.add(halo)});
+    u.push((dt)=>{g.rotation.y+=dt*.3});
+  };
+  B.academy=(g,u)=>{
+    const core=new THREE.Mesh(new THREE.IcosahedronGeometry(.95,1),mk(new THREE.MeshStandardMaterial({color:0x0aa5bd,flatShading:true,metalness:.2,roughness:.5,emissive:0x002a35}))); g.add(core);
+    const wire=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.25,1)),mk(new THREE.LineBasicMaterial({color:0xffffff}),.5)); g.add(wire);
+    const gs=[1.6,2.05,2.5].map((r,i)=>{
+      const m=new THREE.Mesh(new THREE.ExtrudeGeometry(gearShape(8+i*2,r+.22,r,r-.2),{depth:.12,bevelEnabled:false}),mk(new THREE.MeshStandardMaterial({color:i%2?0x2b7bff:C.gear,metalness:.5,roughness:.35})));
+      m.position.z=-.06; const h=new THREE.Group(); h.add(m); h.rotation.set(1.15-i*.25,i*.5,0); g.add(h); return [m,(i%2?-1:1)*(.35-i*.07)]});
+    u.push((dt)=>{core.rotation.y+=dt*.5;core.rotation.x+=dt*.25;wire.rotation.y-=dt*.3;gs.forEach(([m,s])=>m.rotation.z+=s*dt)});
+  };
+  B.globe=(g,u)=>{
+    const w=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(1.5,24,16)),line(.55)); g.add(w);
+    g.add(new THREE.Mesh(new THREE.SphereGeometry(1.48,32,24),glass(.18)));
+    const eq=new THREE.Mesh(new THREE.TorusGeometry(1.52,.02,8,120),solid(C.acc)); eq.rotation.x=Math.PI/2; g.add(eq);
+    const orbit=new THREE.Group(); orbit.rotation.set(1.2,0,.4); const holder=new THREE.Group();
+    const plane=new THREE.Mesh(new THREE.ConeGeometry(.1,.3,4),solid(0xffffff)); plane.position.x=2.1; plane.rotation.z=-Math.PI/2; holder.add(plane); orbit.add(holder);
+    orbit.add(new THREE.Mesh(new THREE.TorusGeometry(2.1,.008,6,120),solid(C.acc,.4))); g.add(orbit);
+    u.push((dt)=>{w.rotation.y+=dt*.25;holder.rotation.z+=dt*.8});
+  };
 
-  let mx=0,my=0,tx=0,ty=0,vis=true,raf,last=performance.now();
-  stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5});
-  stage.addEventListener('pointerleave',()=>{mx=my=0});
-  function resize(){const w=stage.clientWidth,h=stage.clientHeight; if(!w||!h) return; renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
-  new ResizeObserver(resize).observe(stage); resize();
+  /* what goes where: anchor = section id, x/s are tuned for a wide screen */
+  const SLOTS=[
+    {v:'home',a:'home',b:'gearGlobe',x:3.3,s:1},
+    {v:'home',a:'about',b:'academy',x:3.5,s:.78},
+    {v:'home',a:'services',b:'tower',x:-4.3,s:.78},
+    {v:'home',a:'services',b:'building',x:0,s:.72},
+    {v:'home',a:'services',b:'bridge',x:4.2,s:.55},
+    {v:'home',a:'partners',b:'network',x:3.5,s:.9},
+    {v:'home',a:'process',b:'helix',x:-3.8,s:.85},
+    {v:'home',a:'teaser',b:'academy',x:-3.8,s:.7},
+    {v:'any' ,a:'contact',b:'globe',x:-4.4,s:.8},
+    {v:'academy',a:'a-hero',b:'academy',x:3.3,s:.95},
+    {v:'academy',a:'a-cat',b:'tower',x:4.3,s:.7},
+    {v:'academy',a:'a-fmt',b:'network',x:-4,s:.8}
+  ];
+  const slots=SLOTS.map(d=>{const g=new THREE.Group(),sl={d,g,mats:[],upd:[],enter:1,el:null,y:0,fade:0};cur=sl;B[d.b](g,sl.upd);scene.add(g);g.visible=false;return sl});
+  cur=null;
+
+  let aspect=1.7,vh=900,k=.005,anchors=[];
+  function measure(){
+    vh=innerHeight; aspect=innerWidth/innerHeight;
+    const visH=2*cam.position.z*Math.tan(cam.fov*Math.PI/360); k=visH/vh*.55;
+    slots.forEach(sl=>{sl.el=document.getElementById(sl.d.a);
+      const on=sl.d.v==='any'||sl.d.v===view; sl.on=on&&sl.el;
+      if(sl.on){const r=sl.el.getBoundingClientRect(); sl.c=r.top+scrollY+r.height/2}});
+  }
+  function resize(){
+    const w=innerWidth,h=innerHeight; renderer.setSize(w,h,false); cam.aspect=w/h; cam.updateProjectionMatrix(); measure(); need=true;
+  }
+  let need=true,sv=scrollY,mx=0,my=0,last=performance.now(),T=0;
+  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+  addEventListener('scroll',()=>{need=true},{passive:true});
+  addEventListener('resize',resize);
+  new ResizeObserver(()=>{measure();need=true}).observe($1('main'));
+  document.fonts&&document.fonts.ready.then(()=>{measure();need=true});
+
+  const ease=t=>{const c=1.70158+1;return 1+c*Math.pow(t-1,3)+1.70158*Math.pow(t-1,2)};
   function frame(now){
-    const dt=Math.min((now-last)/1000,.05); last=now;
-    if(!RM) for(const [o,ax,sp] of spin) o.rotation[ax]+=sp*dt;
-    tx+=(my*.6-tx)*.06; ty+=(mx*.8-ty)*.06;
-    root.rotation.x=tx+(kind==='home'?-.08:0); root.rotation.y=ty;
-    dust.rotation.y+=RM?0:dt*.04;
+    const dt=Math.min((now-last)/1000,.05); last=now; T+=RM?0:dt;
+    sv+=(scrollY-sv)*(RM?1:.14);
+    const v=sv+vh/2, narrow=aspect<.95, xs=narrow?0:clamp(aspect/1.78,.6,1.15);
+    cam.position.y=-v*k; cam.position.x+=((mx*.8)-cam.position.x)*.04;
+    cam.rotation.y=-cam.position.x*.04; cam.rotation.x=-my*.05;
+    slots.forEach(sl=>{
+      if(!sl.on){sl.g.visible=false;return}
+      const d=Math.abs(v-sl.c)/vh, f=clamp(1.5-d/.7,0,1);
+      sl.fade=f; sl.g.visible=f>.01; if(!sl.g.visible) return;
+      if(sl.enter<1) sl.enter=Math.min(1,sl.enter+dt*1.3);
+      const sc=sl.d.s*(narrow?.75:1)*(sl.enter<1?Math.max(.01,ease(sl.enter)):1);
+      sl.g.scale.setScalar(sc);
+      sl.g.position.set(sl.d.x*xs,-sl.c*k,0);
+      const o=f*(sl.enter<1?sl.enter:1);
+      for(const m of sl.mats) m.opacity=m.userData.base*o;
+      if(!RM) for(const fn of sl.upd) fn(dt,T);
+      else sl.g.rotation.y=.5;
+    });
     renderer.render(scene,cam);
-    if(!RM&&vis) raf=requestAnimationFrame(frame);
+    need=false;
+    if(!RM) requestAnimationFrame(frame); else if(need) requestAnimationFrame(frame);
   }
-  new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis){cancelAnimationFrame(raf);last=performance.now();raf=requestAnimationFrame(frame)}}).observe(stage);
-  requestAnimationFrame(frame);
-  return {resize};
-}
-function initScene(kind){
-  if(scenes[kind]||typeof THREE==='undefined') return;
-  const stage=$1('#stage-'+(kind==='home'?'home':'acad')); if(!stage||!stage.clientWidth) return;
-  const ok=buildScene(kind,$1('#gl-'+(kind==='home'?'home':'acad')),stage);
-  if(ok){scenes[kind]=ok; const fb=$1('#fb-home'); if(kind==='home'&&fb) fb.style.display='none'}
+  function kick(){ if(RM){need=true;requestAnimationFrame(frame)} }
+  if(RM){addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick)}
+
+  document.body.classList.add('gl');
+  resize(); requestAnimationFrame(frame);
+  G={measure:()=>{measure();need=true;kick()},enter:()=>{slots.forEach(sl=>{if(sl.d.v===view)sl.enter=0});measure();kick()}};
 }
 
+let lastView=null;
 function afterRoute(){
-  const v=view==='academy'?'acad':'home';
-  initScene(v==='acad'?'acad':'home');
-  setupTilt($1('#view-'+(view)));setupReveal($1('#view-'+(view)));
+  const root=$1('#view-'+view);
+  if(lastView!==view){root.classList.remove('view-in');void root.offsetWidth;if(!RM)root.classList.add('view-in');}
+  setupTilt(root);setupReveal(root);
+  if(G){ (lastView!==view)?G.enter():G.measure(); }
+  lastView=view;
 }
 setupTilt($1('#contact'));setupReveal($1('#contact'));
-netCanvas($1('#partners'));
 window.addEventListener('hashchange',()=>setTimeout(afterRoute,30));
+init3D();
 afterRoute();
 </script>
 </body>
