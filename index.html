@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equator Engineering — Telecom, Construction &amp; Public Works in Central Africa</title>
+<meta name="description" content="Equator Engineering Sarl: a Congolese engineering company delivering telecommunications, construction and public works — and a local partner for Chinese and Indian investors in Central Africa.">
+<link rel="icon" href="assets/logo.webp">
+<style>
+:root{
+  --blue:#0047b5; --blue-d:#06214f; --navy:#04122e; --cyan:#00bcd4; --cyan-l:#7ee6f2;
+  --ink:#10203a; --mute:#5a6b86; --line:#dfe6f2; --bg:#f5f8fd; --card:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,"Segoe UI",system-ui,-apple-system,"Noto Sans","PingFang SC","Microsoft YaHei","Noto Sans SC","Noto Sans Devanagari","Mangal",sans-serif;color:var(--ink);background:#fff;line-height:1.65;font-size:17px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+h1,h2,h3{line-height:1.2;letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,3.4vw,2.4rem);color:var(--blue-d)}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.8rem}
+.eyebrow::before{content:"";display:inline-block;width:28px;height:2px;background:var(--cyan);vertical-align:middle;margin-right:10px}
+section{padding:88px 0}
+.lead{color:var(--mute);max-width:680px;margin-top:1rem;font-size:1.05rem}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.nav img{height:42px;width:auto}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:.92rem;font-weight:600;color:var(--blue-d)}
+.nav ul a:hover{color:var(--blue)}
+.tools{display:flex;align-items:center;gap:10px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:none;padding:6px 11px;font:inherit;font-size:.82rem;font-weight:600;color:var(--mute);cursor:pointer}
+.lang button.on{background:var(--blue);color:#fff}
+.btn{display:inline-block;background:var(--blue);color:#fff;padding:12px 24px;border-radius:8px;font-weight:700;font-size:.95rem;border:0;cursor:pointer;font-family:inherit;transition:.2s}
+.btn:hover{background:var(--blue-d);transform:translateY(-1px)}
+.btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.55)}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+.btn.sm{padding:8px 16px;font-size:.85rem}
+.burger{display:none;background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--blue-d)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;padding:110px 0 100px;background:radial-gradient(1000px 600px at 85% 20%,#0a3f94 0,transparent 60%),linear-gradient(160deg,var(--navy),var(--blue-d) 60%,#0a3a86)}
+.hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--cyan-l)}
+.hero p{margin-top:1.4rem;font-size:1.15rem;color:#cfe0fb;max-width:560px}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:2rem}
+.hero .eyebrow{color:var(--cyan-l)}
+.globe{width:100%;max-width:420px;margin:0 auto;animation:float 8s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.gear{transform-origin:200px 200px;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eqline{position:absolute;left:0;right:0;top:56%;height:1px;background:linear-gradient(90deg,transparent,rgba(126,230,242,.5),transparent);z-index:1}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14);border-radius:14px;overflow:hidden;margin-top:70px;position:relative;z-index:2}
+.stats div{background:rgba(4,18,46,.55);padding:22px 20px}
+.stats b{display:block;font-size:1.25rem;color:var(--cyan-l)}
+.stats span{font-size:.88rem;color:#b9cdee}
+
+/* about */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about p+p{margin-top:1rem}
+.about p{color:var(--mute)}
+.pillars{display:grid;gap:14px}
+.pillar{display:flex;gap:16px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.pillar i{flex:none;width:42px;height:42px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:800}
+.pillar h3{font-size:1.02rem;color:var(--blue-d)}
+.pillar p{font-size:.93rem;margin-top:2px}
+
+/* services */
+.bg{background:var(--bg)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;transition:.25s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(0,71,181,.35);border-color:#b9cdf0}
+.card::after{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.card svg{width:44px;height:44px;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-bottom:16px}
+.card h3{font-size:1.2rem;color:var(--blue-d);margin-bottom:10px}
+.card ul{list-style:none;color:var(--mute);font-size:.95rem}
+.card li{padding:5px 0 5px 20px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:14px;width:8px;height:2px;background:var(--cyan)}
+
+/* invest */
+.invest{background:linear-gradient(160deg,var(--navy),var(--blue-d));color:#fff}
+.invest h2{color:#fff}
+.invest .lead{color:#b9cdee}
+.invest .eyebrow{color:var(--cyan-l)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.fact{border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:24px;background:rgba(255,255,255,.04)}
+.fact b{display:block;font-size:2rem;color:var(--cyan-l);line-height:1.1}
+.fact span{display:block;margin-top:8px;font-size:.92rem;color:#c3d4f1}
+.opps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+.opp{padding:26px;border-radius:14px;background:#fff;color:var(--ink)}
+.opp h3{color:var(--blue-d);font-size:1.1rem;margin-bottom:8px}
+.opp p{color:var(--mute);font-size:.94rem}
+.opp small{display:inline-block;margin-top:12px;font-weight:700;color:var(--blue);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.note{margin-top:22px;font-size:.8rem;color:#8ea6cf}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px;counter-reset:s}
+.step{position:relative;padding:26px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.step::before{counter-increment:s;content:"0" counter(s);font-size:2rem;font-weight:800;color:var(--cyan)}
+.step h3{margin:6px 0;color:var(--blue-d);font-size:1.05rem}
+.step p{color:var(--mute);font-size:.93rem}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.why div{padding:26px;border-left:3px solid var(--cyan);background:#fff;border-radius:0 12px 12px 0;box-shadow:0 6px 24px -14px rgba(4,18,46,.25)}
+.why h3{color:var(--blue-d);font-size:1.05rem;margin-bottom:6px}
+.why p{color:var(--mute);font-size:.94rem}
+
+/* contact */
+.contact .box{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
+.info p{color:var(--mute);margin-top:1rem}
+.info ul{list-style:none;margin-top:22px}
+.info li{padding:12px 0;border-top:1px solid var(--line);display:flex;gap:14px;font-size:.96rem}
+.info li b{min-width:92px;color:var(--blue-d)}
+form{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:30px;display:grid;gap:14px}
+form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{font-size:.82rem;font-weight:700;color:var(--blue-d);display:grid;gap:6px}
+input,select,textarea{font:inherit;font-size:.95rem;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--cyan);border-color:var(--cyan)}
+textarea{min-height:120px;resize:vertical}
+
+footer{background:var(--navy);color:#9db3da;padding:44px 0;font-size:.9rem}
+footer .f{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .logo{background:#fff;border-radius:8px;padding:6px 12px}
+footer .logo img{height:34px}
+
+@media(max-width:960px){
+  .hero .grid,.two,.contact .box{grid-template-columns:1fr}
+  .globe{max-width:300px}
+  .cards,.opps,.why{grid-template-columns:1fr}
+  .facts,.steps,.stats{grid-template-columns:1fr 1fr}
+  .burger{display:block}
+  .nav ul{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;flex-direction:column;padding:18px 20px;gap:14px;border-bottom:1px solid var(--line)}
+  .nav ul.open{display:flex}
+  .tools .btn{display:none}
+  section{padding:64px 0}
+}
+@media(max-width:520px){
+  .facts,.steps,.stats,form .row{grid-template-columns:1fr}
+  .nav img{height:34px}
+}
+@media(prefers-reduced-motion:reduce){.gear,.globe{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" aria-label="Equator Engineering"><img src="assets/logo.webp" alt="Equator Engineering" width="126" height="42"></a>
+    <ul id="menu">
+      <li><a href="#about" data-i18n="nav_about">About</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#invest" data-i18n="nav_invest">Invest</a></li>
+      <li><a href="#process" data-i18n="nav_process">How we work</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en" class="on">EN</button>
+        <button data-lang="zh">中文</button>
+        <button data-lang="hi">हिं</button>
+        <button data-lang="fr">FR</button>
+      </div>
+      <a class="btn sm" href="#contact" data-i18n="nav_cta">Partner with us</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="eqline"></div>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="eyebrow" data-i18n="hero_eyebrow">Equator Engineering Sarl · Central Africa</span>
+        <h1 data-i18n-html="hero_title">Your engineering partner on the <em>Equator</em> of Africa</h1>
+        <p data-i18n="hero_sub">A dynamic Congolese company in telecommunications, construction and public works — connecting international investors with reliable local execution.</p>
+        <div class="cta">
+          <a class="btn" href="#contact" data-i18n="hero_cta1">Start a partnership</a>
+          <a class="btn ghost" href="#services" data-i18n="hero_cta2">Our expertise</a>
+        </div>
+      </div>
+      <svg class="globe" viewBox="0 0 400 400" role="img" aria-label="Globe and gear">
+        <g class="gear">
+          <circle cx="200" cy="200" r="150" fill="#0a4fc4"/><circle cx="200" cy="200" r="162" fill="none" stroke="#0a4fc4" stroke-width="40" stroke-dasharray="44 39.8"/>
+        </g>
+        <circle cx="200" cy="200" r="118" fill="#fff"/>
+        <circle cx="200" cy="200" r="104" fill="#00bcd4"/>
+        <g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round">
+          <circle cx="200" cy="200" r="86"/>
+          <ellipse cx="200" cy="200" rx="40" ry="86"/>
+          <line x1="200" y1="114" x2="200" y2="286"/>
+          <line x1="114" y1="200" x2="286" y2="200"/>
+          <path d="M126 150q74 26 148 0M126 250q74-26 148 0"/>
+        </g>
+        <line x1="10" y1="200" x2="390" y2="200" stroke="#7ee6f2" stroke-width="2" stroke-dasharray="3 7"/>
+      </svg>
+    </div>
+    <div class="stats">
+      <div><b data-i18n="st1_t">Telecom</b><span data-i18n="st1_d">Networks &amp; infrastructure</span></div>
+      <div><b data-i18n="st2_t">Construction</b><span data-i18n="st2_d">Civil &amp; buildings</span></div>
+      <div><b data-i18n="st3_t">Public works</b><span data-i18n="st3_d">Roads &amp; utilities</span></div>
+      <div><b data-i18n="st4_t">International</b><span data-i18n="st4_d">Partner-ready, multilingual</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-i18n="ab_eyebrow">About us</span>
+      <h2 data-i18n="ab_title">A local company built for international partnerships</h2>
+      <p class="lead" data-i18n="ab_p1">Equator Engineering Sarl is a dynamic company with proven skills in telecommunications, construction and public works.</p>
+      <p data-i18n="ab_p2">We combine on-the-ground knowledge of the Democratic Republic of the Congo — permits, logistics, communities, suppliers and labour — with disciplined engineering and project management that international partners expect.</p>
+      <p data-i18n="ab_p3">Whether you are entering the market, expanding a network or developing infrastructure, we act as your technical and operational partner on site.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><i>01</i><div><h3 data-i18n="pl1_t">Local expertise</h3><p data-i18n="pl1_d">Deep understanding of the regulatory, logistical and cultural landscape.</p></div></div>
+      <div class="pillar"><i>02</i><div><h3 data-i18n="pl2_t">Engineering discipline</h3><p data-i18n="pl2_d">Clear scopes, schedules, quality control and transparent reporting.</p></div></div>
+      <div class="pillar"><i>03</i><div><h3 data-i18n="pl3_t">Partner-first approach</h3><p data-i18n="pl3_d">We work alongside foreign investors and contractors as a reliable local counterpart.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="bg">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="sv_eyebrow">What we do</span>
+    <h2 data-i18n="sv_title">Three core business lines</h2>
+    <p class="lead" data-i18n="sv_lead">End-to-end delivery from study and design to installation, construction and commissioning.</p>
+    <div class="cards">
+      <article class="card">
+        <svg viewBox="0 0 48 48"><path d="M24 22v20M16 42h16M24 22l-8 20M24 22l8 20"/><circle cx="24" cy="16" r="3"/><path d="M15 9a13 13 0 0 0 0 14M33 9a13 13 0 0 1 0 14M9 4a21 21 0 0 0 0 24M39 4a21 21 0 0 1 0 24"/></svg>
+        <h3 data-i18n="c1_t">Telecommunications</h3>
+        <ul>
+          <li data-i18n="c1_1">Tower &amp; site build (greenfield / collocation)</li>
+          <li data-i18n="c1_2">Radio access network deployment</li>
+          <li data-i18n="c1_3">Fibre optic &amp; backhaul rollout</li>
+          <li data-i18n="c1_4">Power, energy &amp; site maintenance</li>
+        </ul>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 48 48"><path d="M4 42h40M8 42V20l16-12 16 12v22"/><path d="M18 42V28h12v14M24 8v4"/></svg>
+        <h3 data-i18n="c2_t">Construction</h3>
+        <ul>
+          <li data-i18n="c2_1">Commercial &amp; industrial buildings</li>
+          <li data-i18n="c2_2">Civil works &amp; foundations</li>
+          <li data-i18n="c2_3">Site camps &amp; logistics facilities</li>
+          <li data-i18n="c2_4">Project &amp; site management</li>
+        </ul>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 48 48"><path d="M10 44L20 4M38 44L28 4M24 10v6M24 22v6M24 34v6"/><path d="M4 44h40"/></svg>
+        <h3 data-i18n="c3_t">Public works</h3>
+        <ul>
+          <li data-i18n="c3_1">Roads, bridges &amp; drainage</li>
+          <li data-i18n="c3_2">Water &amp; sanitation networks</li>
+          <li data-i18n="c3_3">Electrification &amp; utilities</li>
+          <li data-i18n="c3_4">Public infrastructure programmes</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="invest" class="invest">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="iv_eyebrow">Invest in Central Africa</span>
+    <h2 data-i18n="iv_title">Why the DR Congo — and why now</h2>
+    <p class="lead" data-i18n="iv_lead">One of the world's largest untapped markets for connectivity and infrastructure, with a young and fast-growing population.</p>
+    <div class="facts">
+      <div class="fact"><b>100M+</b><span data-i18n="f1">inhabitants — one of Africa's largest populations</span></div>
+      <div class="fact"><b>#1</b><span data-i18n="f2">global cobalt producer, with major copper &amp; lithium potential</span></div>
+      <div class="fact"><b>2.3M km²</b><span data-i18n="f3">second-largest country in Africa — vast infrastructure needs</span></div>
+      <div class="fact"><b>Inga</b><span data-i18n="f4">world-class hydropower potential for the continent</span></div>
+    </div>
+    <h3 style="margin-top:56px;font-size:1.4rem" data-i18n="op_title">Where we can build together</h3>
+    <div class="opps">
+      <div class="opp"><h3 data-i18n="o1_t">Telecom infrastructure &amp; towers</h3><p data-i18n="o1_d">Rural and urban coverage expansion, fibre backbone, tower-sharing and energy solutions.</p><small data-i18n="o1_s">Operators · Equipment makers</small></div>
+      <div class="opp"><h3 data-i18n="o2_t">Mining-support construction</h3><p data-i18n="o2_d">Camps, access roads, warehouses and connectivity for mining and industrial sites.</p><small data-i18n="o2_s">Mining · EPC contractors</small></div>
+      <div class="opp"><h3 data-i18n="o3_t">Roads &amp; public infrastructure</h3><p data-i18n="o3_d">Joint ventures and subcontracting on public works, utilities and urban development.</p><small data-i18n="o3_s">Developers · Funds · JV</small></div>
+    </div>
+    <p class="note" data-i18n="note">Market figures are indicative and rounded; project-specific data is shared with qualified partners on request.</p>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="pr_eyebrow">How we work</span>
+    <h2 data-i18n="pr_title">From first conversation to delivery</h2>
+    <div class="steps">
+      <div class="step"><h3 data-i18n="s1_t">Discover</h3><p data-i18n="s1_d">We understand your objectives, scope, budget and timeline.</p></div>
+      <div class="step"><h3 data-i18n="s2_t">Assess</h3><p data-i18n="s2_d">Site surveys, permits, supply chain and risk review on the ground.</p></div>
+      <div class="step"><h3 data-i18n="s3_t">Execute</h3><p data-i18n="s3_d">Engineering, procurement and construction with strict quality control.</p></div>
+      <div class="step"><h3 data-i18n="s4_t">Support</h3><p data-i18n="s4_d">Commissioning, handover and long-term maintenance.</p></div>
+    </div>
+    <div class="why">
+      <div><h3 data-i18n="w1_t">Multilingual communication</h3><p data-i18n="w1_d">Clear, responsive coordination in English, French, Chinese and Hindi.</p></div>
+      <div><h3 data-i18n="w2_t">Transparent reporting</h3><p data-i18n="w2_d">Regular progress reports with photos, milestones and cost tracking.</p></div>
+      <div><h3 data-i18n="w3_t">Compliance first</h3><p data-i18n="w3_d">Local regulations, safety and environmental standards respected throughout.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact bg">
+  <div class="wrap box">
+    <div class="info">
+      <span class="eyebrow" data-i18n="ct_eyebrow">Contact</span>
+      <h2 data-i18n="ct_title">Let's discuss your project</h2>
+      <p data-i18n="ct_lead">Tell us about your investment or project. Our team will respond within one business day.</p>
+      <ul>
+        <li><b data-i18n="ct_wa">WhatsApp</b><a id="waLink" href="#">—</a></li>
+        <li><b data-i18n="ct_em">Email</b><a id="mailLink" href="#">—</a></li>
+        <li><b data-i18n="ct_ad">Location</b><span data-i18n="ct_loc">Democratic Republic of the Congo</span></li>
+        <li><b>Facebook</b><span>Equator Engineering Sarl</span></li>
+      </ul>
+    </div>
+    <form id="form">
+      <div class="row">
+        <label><span data-i18n="fm_name">Full name</span><input name="name" required></label>
+        <label><span data-i18n="fm_co">Company</span><input name="company"></label>
+      </div>
+      <div class="row">
+        <label><span data-i18n="fm_mail">Email</span><input type="email" name="email" required></label>
+        <label><span data-i18n="fm_ph">Phone / WeChat / WhatsApp</span><input name="phone"></label>
+      </div>
+      <label><span data-i18n="fm_int">Area of interest</span>
+        <select name="interest">
+          <option data-i18n="fm_o1">Telecommunications</option>
+          <option data-i18n="fm_o2">Construction</option>
+          <option data-i18n="fm_o3">Public works</option>
+          <option data-i18n="fm_o4">Joint venture / investment</option>
+        </select>
+      </label>
+      <label><span data-i18n="fm_msg">Message</span><textarea name="message" required></textarea></label>
+      <button class="btn" type="submit" data-i18n="fm_send">Send message</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap f">
+    <div class="logo"><img src="assets/logo.webp" alt="Equator Engineering"></div>
+    <div>© <span id="yr"></span> Equator Engineering Sarl · <span data-i18n="ft">Telecommunications · Construction · Public Works</span></div>
+  </div>
+</footer>
+
+<script>
+/* ===== Edit these with the real contact details ===== */
+const CONTACT = {
+  email: "contact@equator-engineering.com",   // TODO: replace with real address
+  whatsapp: "",                                // TODO: international format, digits only, e.g. 243XXXXXXXXX
+  phoneLabel: ""                               // optional display text, e.g. +243 XXX XXX XXX
+};
+
+const T = {
+en:{nav_about:"About",nav_services:"Services",nav_invest:"Invest",nav_process:"How we work",nav_contact:"Contact",nav_cta:"Partner with us",
+hero_eyebrow:"Equator Engineering Sarl · Central Africa",hero_title:"Your engineering partner on the <em>Equator</em> of Africa",
+hero_sub:"A dynamic Congolese company in telecommunications, construction and public works — connecting international investors with reliable local execution.",
+hero_cta1:"Start a partnership",hero_cta2:"Our expertise",
+st1_t:"Telecom",st1_d:"Networks & infrastructure",st2_t:"Construction",st2_d:"Civil & buildings",st3_t:"Public works",st3_d:"Roads & utilities",st4_t:"International",st4_d:"Partner-ready, multilingual",
+ab_eyebrow:"About us",ab_title:"A local company built for international partnerships",
+ab_p1:"Equator Engineering Sarl is a dynamic company with proven skills in telecommunications, construction and public works.",
+ab_p2:"We combine on-the-ground knowledge of the Democratic Republic of the Congo — permits, logistics, communities, suppliers and labour — with disciplined engineering and project management that international partners expect.",
+ab_p3:"Whether you are entering the market, expanding a network or developing infrastructure, we act as your technical and operational partner on site.",
+pl1_t:"Local expertise",pl1_d:"Deep understanding of the regulatory, logistical and cultural landscape.",
+pl2_t:"Engineering discipline",pl2_d:"Clear scopes, schedules, quality control and transparent reporting.",
+pl3_t:"Partner-first approach",pl3_d:"We work alongside foreign investors and contractors as a reliable local counterpart.",
+sv_eyebrow:"What we do",sv_title:"Three core business lines",sv_lead:"End-to-end delivery from study and design to installation, construction and commissioning.",
+c1_t:"Telecommunications",c1_1:"Tower & site build (greenfield / collocation)",c1_2:"Radio access network deployment",c1_3:"Fibre optic & backhaul rollout",c1_4:"Power, energy & site maintenance",
+c2_t:"Construction",c2_1:"Commercial & industrial buildings",c2_2:"Civil works & foundations",c2_3:"Site camps & logistics facilities",c2_4:"Project & site management",
+c3_t:"Public works",c3_1:"Roads, bridges & drainage",c3_2:"Water & sanitation networks",c3_3:"Electrification & utilities",c3_4:"Public infrastructure programmes",
+iv_eyebrow:"Invest in Central Africa",iv_title:"Why the DR Congo — and why now",
+iv_lead:"One of the world's largest untapped markets for connectivity and infrastructure, with a young and fast-growing population.",
+f1:"inhabitants — one of Africa's largest populations",f2:"global cobalt producer, with major copper & lithium potential",f3:"second-largest country in Africa — vast infrastructure needs",f4:"world-class hydropower potential for the continent",
+op_title:"Where we can build together",
+o1_t:"Telecom infrastructure & towers",o1_d:"Rural and urban coverage expansion, fibre backbone, tower-sharing and energy solutions.",o1_s:"Operators · Equipment makers",
+o2_t:"Mining-support construction",o2_d:"Camps, access roads, warehouses and connectivity for mining and industrial sites.",o2_s:"Mining · EPC contractors",
+o3_t:"Roads & public infrastructure",o3_d:"Joint ventures and subcontracting on public works, utilities and urban development.",o3_s:"Developers · Funds · JV",
+note:"Market figures are indicative and rounded; project-specific data is shared with qualified partners on request.",
+pr_eyebrow:"How we work",pr_title:"From first conversation to delivery",
+s1_t:"Discover",s1_d:"We understand your objectives, scope, budget and timeline.",s2_t:"Assess",s2_d:"Site surveys, permits, supply chain and risk review on the ground.",
+s3_t:"Execute",s3_d:"Engineering, procurement and construction with strict quality control.",s4_t:"Support",s4_d:"Commissioning, handover and long-term maintenance.",
+w1_t:"Multilingual communication",w1_d:"Clear, responsive coordination in English, French, Chinese and Hindi.",
+w2_t:"Transparent reporting",w2_d:"Regular progress reports with photos, milestones and cost tracking.",
+w3_t:"Compliance first",w3_d:"Local regulations, safety and environmental standards respected throughout.",
+ct_eyebrow:"Contact",ct_title:"Let's discuss your project",ct_lead:"Tell us about your investment or project. Our team will respond within one business day.",
+ct_wa:"WhatsApp",ct_em:"Email",ct_ad:"Location",ct_loc:"Democratic Republic of the Congo",
+fm_name:"Full name",fm_co:"Company",fm_mail:"Email",fm_ph:"Phone / WeChat / WhatsApp",fm_int:"Area of interest",
+fm_o1:"Telecommunications",fm_o2:"Construction",fm_o3:"Public works",fm_o4:"Joint venture / investment",fm_msg:"Message",fm_send:"Send message",
+ft:"Telecommunications · Construction · Public Works"},
+
+zh:{nav_about:"关于我们",nav_services:"业务领域",nav_invest:"投资机遇",nav_process:"合作流程",nav_contact:"联系我们",nav_cta:"洽谈合作",
+hero_eyebrow:"Equator Engineering Sarl · 中部非洲",hero_title:"您在非洲<em>赤道</em>上的工程合作伙伴",
+hero_sub:"一家充满活力的刚果本土企业，业务涵盖通信、建筑与公共工程——为国际投资者提供可靠的本地执行力。",
+hero_cta1:"开启合作",hero_cta2:"了解我们的能力",
+st1_t:"通信",st1_d:"网络与基础设施",st2_t:"建筑",st2_d:"土建与房建",st3_t:"公共工程",st3_d:"道路与市政",st4_t:"国际合作",st4_d:"多语种，随时对接",
+ab_eyebrow:"关于我们",ab_title:"专为国际合作而生的本地企业",
+ab_p1:"Equator Engineering Sarl 是一家充满活力的公司，在通信、建筑和公共工程领域拥有扎实的专业能力。",
+ab_p2:"我们熟悉刚果民主共和国的实际情况——许可审批、物流、社区、供应商与劳动力——并以严谨的工程与项目管理满足国际合作伙伴的期望。",
+ab_p3:"无论您是进入市场、扩展网络还是开发基础设施，我们都是您在当地可靠的技术与运营伙伴。",
+pl1_t:"本地专业经验",pl1_d:"深入了解当地法规、物流与文化环境。",pl2_t:"严谨的工程管理",pl2_d:"明确的范围、进度、质量控制与透明汇报。",pl3_t:"以合作伙伴为先",pl3_d:"作为外国投资者和承包商值得信赖的本地合作方。",
+sv_eyebrow:"我们的业务",sv_title:"三大核心业务",sv_lead:"从勘察设计到安装、施工与验收的全流程交付。",
+c1_t:"通信工程",c1_1:"铁塔与站点建设（新建/共址）",c1_2:"无线接入网部署",c1_3:"光纤与传输网络建设",c1_4:"供电、能源与站点维护",
+c2_t:"建筑工程",c2_1:"商业与工业建筑",c2_2:"土建与基础工程",c2_3:"营地与物流设施",c2_4:"项目与现场管理",
+c3_t:"公共工程",c3_1:"道路、桥梁与排水",c3_2:"供水与卫生设施",c3_3:"电气化与市政设施",c3_4:"公共基础设施项目",
+iv_eyebrow:"投资中部非洲",iv_title:"为什么选择刚果（金）？为什么是现在？",
+iv_lead:"全球规模最大、尚待开发的通信与基础设施市场之一，人口年轻且快速增长。",
+f1:"人口——非洲人口最多的国家之一",f2:"全球第一大钴生产国，铜与锂潜力巨大",f3:"非洲第二大国——基础设施需求庞大",f4:"具有世界级水电潜力（英加水电站）",
+op_title:"我们可以共同发展的领域",
+o1_t:"通信基础设施与铁塔",o1_d:"城乡网络覆盖扩展、光纤骨干网、铁塔共享与能源解决方案。",o1_s:"运营商 · 设备商",
+o2_t:"矿区配套工程",o2_d:"为矿山与工业场地提供营地、进场道路、仓储与通信。",o2_s:"矿业 · EPC 承包商",
+o3_t:"道路与公共基础设施",o3_d:"在公共工程、市政与城市开发领域开展合资与分包合作。",o3_s:"开发商 · 基金 · 合资",
+note:"市场数据为约数，仅供参考；项目具体资料将向合格合作伙伴按需提供。",
+pr_eyebrow:"合作流程",pr_title:"从初次沟通到项目交付",
+s1_t:"了解需求",s1_d:"明确您的目标、范围、预算与时间表。",s2_t:"现场评估",s2_d:"现场勘察、许可、供应链与风险评估。",
+s3_t:"组织实施",s3_d:"设计、采购与施工，严格质量控制。",s4_t:"持续支持",s4_d:"调试、移交与长期维护。",
+w1_t:"多语种沟通",w1_d:"以英语、法语、中文和印地语进行清晰、及时的协调。",w2_t:"透明汇报",w2_d:"定期提供含照片、里程碑与成本跟踪的进度报告。",w3_t:"合规优先",w3_d:"全程遵守当地法规、安全与环保标准。",
+ct_eyebrow:"联系我们",ct_title:"让我们探讨您的项目",ct_lead:"请告诉我们您的投资或项目需求，我们将在一个工作日内回复。",
+ct_wa:"WhatsApp",ct_em:"邮箱",ct_ad:"所在地",ct_loc:"刚果民主共和国",
+fm_name:"姓名",fm_co:"公司",fm_mail:"邮箱",fm_ph:"电话 / 微信 / WhatsApp",fm_int:"感兴趣的领域",
+fm_o1:"通信",fm_o2:"建筑",fm_o3:"公共工程",fm_o4:"合资 / 投资",fm_msg:"留言",fm_send:"发送",
+ft:"通信 · 建筑 · 公共工程"},
+
+hi:{nav_about:"हमारे बारे में",nav_services:"सेवाएँ",nav_invest:"निवेश",nav_process:"कार्य प्रणाली",nav_contact:"संपर्क",nav_cta:"साझेदारी करें",
+hero_eyebrow:"Equator Engineering Sarl · मध्य अफ्रीका",hero_title:"अफ्रीका की <em>भूमध्य रेखा</em> पर आपका इंजीनियरिंग साझेदार",
+hero_sub:"दूरसंचार, निर्माण और सार्वजनिक कार्यों में सक्रिय एक गतिशील कांगोली कंपनी — अंतरराष्ट्रीय निवेशकों को भरोसेमंद स्थानीय क्रियान्वयन से जोड़ती है।",
+hero_cta1:"साझेदारी शुरू करें",hero_cta2:"हमारी विशेषज्ञता",
+st1_t:"दूरसंचार",st1_d:"नेटवर्क और अवसंरचना",st2_t:"निर्माण",st2_d:"सिविल और भवन",st3_t:"सार्वजनिक कार्य",st3_d:"सड़कें और उपयोगिताएँ",st4_t:"अंतरराष्ट्रीय",st4_d:"साझेदारी के लिए तैयार, बहुभाषी",
+ab_eyebrow:"हमारे बारे में",ab_title:"अंतरराष्ट्रीय साझेदारियों के लिए बनी स्थानीय कंपनी",
+ab_p1:"Equator Engineering Sarl दूरसंचार, निर्माण और सार्वजनिक कार्यों में सिद्ध दक्षता वाली एक गतिशील कंपनी है।",
+ab_p2:"हम कांगो लोकतांत्रिक गणराज्य की ज़मीनी जानकारी — परमिट, लॉजिस्टिक्स, समुदाय, आपूर्तिकर्ता और श्रमिक — को अनुशासित इंजीनियरिंग और परियोजना प्रबंधन के साथ जोड़ते हैं।",
+ab_p3:"चाहे आप बाज़ार में प्रवेश कर रहे हों, नेटवर्क का विस्तार कर रहे हों या अवसंरचना विकसित कर रहे हों, हम साइट पर आपके तकनीकी और परिचालन साझेदार हैं।",
+pl1_t:"स्थानीय विशेषज्ञता",pl1_d:"नियामक, लॉजिस्टिक और सांस्कृतिक परिवेश की गहरी समझ।",pl2_t:"इंजीनियरिंग अनुशासन",pl2_d:"स्पष्ट दायरा, समय-सारणी, गुणवत्ता नियंत्रण और पारदर्शी रिपोर्टिंग।",pl3_t:"साझेदार-प्रथम दृष्टिकोण",pl3_d:"विदेशी निवेशकों और ठेकेदारों के भरोसेमंद स्थानीय सहयोगी के रूप में कार्य।",
+sv_eyebrow:"हम क्या करते हैं",sv_title:"तीन प्रमुख व्यावसायिक क्षेत्र",sv_lead:"अध्ययन और डिज़ाइन से लेकर स्थापना, निर्माण और कमीशनिंग तक संपूर्ण क्रियान्वयन।",
+c1_t:"दूरसंचार",c1_1:"टावर और साइट निर्माण (ग्रीनफ़ील्ड / को-लोकेशन)",c1_2:"रेडियो एक्सेस नेटवर्क की तैनाती",c1_3:"ऑप्टिकल फ़ाइबर और बैकहॉल",c1_4:"बिजली, ऊर्जा और साइट रखरखाव",
+c2_t:"निर्माण",c2_1:"व्यावसायिक और औद्योगिक भवन",c2_2:"सिविल कार्य और नींव",c2_3:"साइट कैंप और लॉजिस्टिक्स सुविधाएँ",c2_4:"परियोजना और साइट प्रबंधन",
+c3_t:"सार्वजनिक कार्य",c3_1:"सड़कें, पुल और जल निकासी",c3_2:"जल और स्वच्छता नेटवर्क",c3_3:"विद्युतीकरण और उपयोगिताएँ",c3_4:"सार्वजनिक अवसंरचना कार्यक्रम",
+iv_eyebrow:"मध्य अफ्रीका में निवेश",iv_title:"कांगो (DRC) क्यों — और अभी क्यों",
+iv_lead:"कनेक्टिविटी और अवसंरचना के लिए दुनिया के सबसे बड़े अनछुए बाज़ारों में से एक, जहाँ आबादी युवा और तेज़ी से बढ़ रही है।",
+f1:"निवासी — अफ्रीका की सबसे बड़ी आबादियों में से एक",f2:"विश्व का सबसे बड़ा कोबाल्ट उत्पादक; तांबा और लिथियम की बड़ी संभावना",f3:"अफ्रीका का दूसरा सबसे बड़ा देश — विशाल अवसंरचना आवश्यकताएँ",f4:"महाद्वीप के लिए विश्वस्तरीय जलविद्युत क्षमता",
+op_title:"जहाँ हम साथ मिलकर निर्माण कर सकते हैं",
+o1_t:"दूरसंचार अवसंरचना और टावर",o1_d:"ग्रामीण व शहरी कवरेज विस्तार, फ़ाइबर बैकबोन, टावर-शेयरिंग और ऊर्जा समाधान।",o1_s:"ऑपरेटर · उपकरण निर्माता",
+o2_t:"खनन-सहायक निर्माण",o2_d:"खनन और औद्योगिक स्थलों के लिए कैंप, पहुँच मार्ग, गोदाम और कनेक्टिविटी।",o2_s:"खनन · EPC ठेकेदार",
+o3_t:"सड़कें और सार्वजनिक अवसंरचना",o3_d:"सार्वजनिक कार्यों, उपयोगिताओं और शहरी विकास में संयुक्त उद्यम व उप-ठेका।",o3_s:"डेवलपर · फ़ंड · JV",
+note:"बाज़ार के आँकड़े संकेतात्मक और पूर्णांकित हैं; परियोजना-विशिष्ट जानकारी योग्य साझेदारों को अनुरोध पर दी जाती है।",
+pr_eyebrow:"कार्य प्रणाली",pr_title:"पहली बातचीत से परियोजना पूर्ण होने तक",
+s1_t:"समझना",s1_d:"आपके उद्देश्य, दायरा, बजट और समय-सीमा की स्पष्ट समझ।",s2_t:"मूल्यांकन",s2_d:"साइट सर्वे, परमिट, आपूर्ति शृंखला और जोखिम समीक्षा।",
+s3_t:"क्रियान्वयन",s3_d:"कड़े गुणवत्ता नियंत्रण के साथ इंजीनियरिंग, ख़रीद और निर्माण।",s4_t:"सहयोग",s4_d:"कमीशनिंग, हैंडओवर और दीर्घकालिक रखरखाव।",
+w1_t:"बहुभाषी संवाद",w1_d:"अंग्रेज़ी, फ़्रेंच, चीनी और हिंदी में स्पष्ट और त्वरित समन्वय।",w2_t:"पारदर्शी रिपोर्टिंग",w2_d:"फ़ोटो, मील के पत्थर और लागत ट्रैकिंग के साथ नियमित प्रगति रिपोर्ट।",w3_t:"अनुपालन सर्वोपरि",w3_d:"स्थानीय नियमों, सुरक्षा और पर्यावरण मानकों का पूर्ण पालन।",
+ct_eyebrow:"संपर्क",ct_title:"आइए आपकी परियोजना पर चर्चा करें",ct_lead:"अपने निवेश या परियोजना के बारे में बताएँ। हमारी टीम एक कार्यदिवस में उत्तर देगी।",
+ct_wa:"WhatsApp",ct_em:"ईमेल",ct_ad:"स्थान",ct_loc:"कांगो लोकतांत्रिक गणराज्य",
+fm_name:"पूरा नाम",fm_co:"कंपनी",fm_mail:"ईमेल",fm_ph:"फ़ोन / WeChat / WhatsApp",fm_int:"रुचि का क्षेत्र",
+fm_o1:"दूरसंचार",fm_o2:"निर्माण",fm_o3:"सार्वजनिक कार्य",fm_o4:"संयुक्त उद्यम / निवेश",fm_msg:"संदेश",fm_send:"संदेश भेजें",
+ft:"दूरसंचार · निर्माण · सार्वजनिक कार्य"},
+
+fr:{nav_about:"À propos",nav_services:"Services",nav_invest:"Investir",nav_process:"Méthode",nav_contact:"Contact",nav_cta:"Devenir partenaire",
+hero_eyebrow:"Equator Engineering Sarl · Afrique centrale",hero_title:"Votre partenaire d'ingénierie sur l'<em>Équateur</em> de l'Afrique",
+hero_sub:"Une entreprise congolaise dynamique en télécommunications, construction et travaux publics — qui relie les investisseurs internationaux à une exécution locale fiable.",
+hero_cta1:"Lancer un partenariat",hero_cta2:"Nos compétences",
+st1_t:"Télécoms",st1_d:"Réseaux et infrastructures",st2_t:"Construction",st2_d:"Génie civil et bâtiment",st3_t:"Travaux publics",st3_d:"Routes et réseaux",st4_t:"International",st4_d:"Prêts à collaborer, multilingues",
+ab_eyebrow:"À propos",ab_title:"Une entreprise locale conçue pour les partenariats internationaux",
+ab_p1:"Equator Engineering Sarl est une entreprise dynamique aux compétences éprouvées dans les télécommunications, la construction et les travaux publics.",
+ab_p2:"Nous allions la connaissance du terrain en République démocratique du Congo — permis, logistique, communautés, fournisseurs, main-d'œuvre — à une ingénierie et une gestion de projet rigoureuses.",
+ab_p3:"Que vous entriez sur le marché, étendiez un réseau ou développiez des infrastructures, nous sommes votre partenaire technique et opérationnel sur site.",
+pl1_t:"Expertise locale",pl1_d:"Compréhension approfondie du cadre réglementaire, logistique et culturel.",pl2_t:"Rigueur d'ingénieur",pl2_d:"Périmètres clairs, planning, contrôle qualité et reporting transparent.",pl3_t:"Approche partenaire",pl3_d:"Un interlocuteur local fiable pour les investisseurs et entrepreneurs étrangers.",
+sv_eyebrow:"Nos activités",sv_title:"Trois métiers principaux",sv_lead:"Une prestation de bout en bout, de l'étude et la conception à l'installation, la construction et la mise en service.",
+c1_t:"Télécommunications",c1_1:"Construction de pylônes et de sites",c1_2:"Déploiement de réseaux d'accès radio",c1_3:"Fibre optique et backhaul",c1_4:"Énergie et maintenance des sites",
+c2_t:"Construction",c2_1:"Bâtiments commerciaux et industriels",c2_2:"Génie civil et fondations",c2_3:"Camps et installations logistiques",c2_4:"Gestion de projet et de chantier",
+c3_t:"Travaux publics",c3_1:"Routes, ponts et drainage",c3_2:"Réseaux d'eau et d'assainissement",c3_3:"Électrification et services publics",c3_4:"Programmes d'infrastructures publiques",
+iv_eyebrow:"Investir en Afrique centrale",iv_title:"Pourquoi la RD Congo — et pourquoi maintenant",
+iv_lead:"L'un des plus grands marchés inexploités au monde pour la connectivité et les infrastructures, avec une population jeune en forte croissance.",
+f1:"habitants — l'une des plus grandes populations d'Afrique",f2:"premier producteur mondial de cobalt, fort potentiel en cuivre et lithium",f3:"deuxième plus grand pays d'Afrique — d'immenses besoins en infrastructures",f4:"potentiel hydroélectrique de classe mondiale pour le continent",
+op_title:"Où construire ensemble",
+o1_t:"Infrastructures télécoms et pylônes",o1_d:"Extension de la couverture rurale et urbaine, backbone fibre, partage de pylônes et solutions énergétiques.",o1_s:"Opérateurs · Équipementiers",
+o2_t:"Construction pour le secteur minier",o2_d:"Camps, routes d'accès, entrepôts et connectivité pour sites miniers et industriels.",o2_s:"Mines · Entreprises EPC",
+o3_t:"Routes et infrastructures publiques",o3_d:"Joint-ventures et sous-traitance en travaux publics, réseaux et aménagement urbain.",o3_s:"Promoteurs · Fonds · JV",
+note:"Les chiffres de marché sont indicatifs et arrondis ; les données propres à chaque projet sont communiquées aux partenaires qualifiés sur demande.",
+pr_eyebrow:"Méthode",pr_title:"Du premier échange à la livraison",
+s1_t:"Comprendre",s1_d:"Vos objectifs, périmètre, budget et calendrier.",s2_t:"Évaluer",s2_d:"Études de site, permis, chaîne d'approvisionnement et analyse des risques.",
+s3_t:"Réaliser",s3_d:"Ingénierie, achats et construction avec un contrôle qualité strict.",s4_t:"Accompagner",s4_d:"Mise en service, remise et maintenance à long terme.",
+w1_t:"Communication multilingue",w1_d:"Coordination claire et réactive en anglais, français, chinois et hindi.",w2_t:"Reporting transparent",w2_d:"Rapports d'avancement réguliers : photos, jalons et suivi des coûts.",w3_t:"Conformité d'abord",w3_d:"Respect constant des réglementations locales, de la sécurité et de l'environnement.",
+ct_eyebrow:"Contact",ct_title:"Parlons de votre projet",ct_lead:"Décrivez-nous votre investissement ou projet. Notre équipe répond sous un jour ouvré.",
+ct_wa:"WhatsApp",ct_em:"E-mail",ct_ad:"Localisation",ct_loc:"République démocratique du Congo",
+fm_name:"Nom complet",fm_co:"Société",fm_mail:"E-mail",fm_ph:"Téléphone / WeChat / WhatsApp",fm_int:"Domaine d'intérêt",
+fm_o1:"Télécommunications",fm_o2:"Construction",fm_o3:"Travaux publics",fm_o4:"Joint-venture / investissement",fm_msg:"Message",fm_send:"Envoyer",
+ft:"Télécommunications · Construction · Travaux publics"}
+};
+
+const $ = s => document.querySelectorAll(s);
+function setLang(l){
+  const d = T[l]; if(!d) return;
+  document.documentElement.lang = l;
+  $('[data-i18n]').forEach(e=>{ if(d[e.dataset.i18n]!=null) e.textContent = d[e.dataset.i18n]; });
+  $('[data-i18n-html]').forEach(e=>{ if(d[e.dataset.i18nHtml]!=null) e.innerHTML = d[e.dataset.i18nHtml]; });
+  $('.lang button').forEach(b=>b.classList.toggle('on', b.dataset.lang===l));
+  try{ localStorage.setItem('lang', l); }catch(e){}
+}
+$('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+let saved=null; try{ saved=localStorage.getItem('lang'); }catch(e){}
+const nav=(navigator.language||'en').toLowerCase();
+setLang(saved || (nav.startsWith('zh')?'zh':nav.startsWith('hi')?'hi':nav.startsWith('fr')?'fr':'en'));
+
+document.getElementById('burger').onclick=()=>document.getElementById('menu').classList.toggle('open');
+$('#menu a').forEach(a=>a.onclick=()=>document.getElementById('menu').classList.remove('open'));
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* contact links */
+const mail=document.getElementById('mailLink'), wa=document.getElementById('waLink');
+mail.textContent=CONTACT.email; mail.href='mailto:'+CONTACT.email;
+if(CONTACT.whatsapp){ wa.textContent=CONTACT.phoneLabel||('+'+CONTACT.whatsapp); wa.href='https://wa.me/'+CONTACT.whatsapp; }
+else wa.closest('li').style.display='none';
+
+/* form -> opens the visitor's mail client (no backend needed) */
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=new FormData(e.target);
+  const body=`Name: ${f.get('name')}\nCompany: ${f.get('company')}\nEmail: ${f.get('email')}\nPhone/WeChat/WhatsApp: ${f.get('phone')}\nInterest: ${f.get('interest')}\n\n${f.get('message')}`;
+  location.href=`mailto:${CONTACT.email}?subject=${encodeURIComponent('Website enquiry — '+f.get('interest'))}&body=${encodeURIComponent(body)}`;
+});
+</script>
+</body>
+</html>
